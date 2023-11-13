@@ -1,0 +1,115 @@
+@include('layouts.header')
+<div class="col-md-12">
+    <div class="card mb-4">
+      <h5 class="card-header">Edit Data Masyarakat</h5>
+      <div class="card-body">
+      <form action="/administrator/masyarakat/{{ $dataMas->nik }}" method="post" enctype="multipart/form-data">
+        @method('put')
+        @csrf
+          <div class="form-floating mb-4">
+            <input
+              type="number"
+              name="nik"
+              class="form-control @error('nik') is-invalid @enderror"
+              id="floatingInput"
+              placeholder="NIK"
+              aria-describedby="floatingInputHelp"
+              required  
+              readonly
+              value="{{ old('nik', $dataMas->nik) }}"
+            />
+            @error('nik')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <label for="floatingInput">NIK</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              name="nama"
+              class="form-control @error('nama') is-invalid @enderror"
+              id="floatingInput"
+              placeholder="nama"
+              aria-describedby="floatingInputHelp"
+              required  
+              value="{{ old('nama', $dataMas->nama) }}"
+            />
+            @error('nama')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <label for="floatingInput">Nama</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              name="username"
+              class="form-control @error('username') is-invalid @enderror"
+              id="floatingInput"
+              placeholder="username"
+              aria-describedby="floatingInputHelp"
+              required  
+              value="{{ old('username', $dataMas->username) }}"
+            />
+            @error('username')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="password"
+              name="password"
+              class="form-control @error('password') is-invalid @enderror"
+              id="floatingInput"
+              placeholder="nama"
+              aria-describedby="floatingInputHelp"
+              required  
+              value="{{ old('password', $dataMas->password) }}"
+            />
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <label for="floatingInput">Password</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="number"
+              name="telp"
+              class="form-control @error('telp') is-invalid @enderror"
+              id="floatingInput"
+              placeholder="telp"
+              aria-describedby="floatingInputHelp"
+              required  
+              value="{{ old('telp', $dataMas->telp) }}"
+            />
+            @error('telp')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <label for="floatingInput">No Telepon</label>
+          </div>
+         
+          <div class="text-center">
+            <button type="submit" name="submit" value="Simpan" class="btn btn-primary">Simpan</button>
+            <a href="/administrator/masyarakat" class="btn btn-info">Kembali</a>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+@include('layouts.footer')
+
+<script>
+  function previewFoto(){
+    const foto = document.querySelector('#foto');
+    const imgPreview = document.querySelector('.img-preview');
+
+    imgPreview.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(foto.files[0]);
+
+    oFReader.onload = function(oFREvent){
+      imgPreview.src = oFREvent.target.result;
+    }
+  }
+</script>
